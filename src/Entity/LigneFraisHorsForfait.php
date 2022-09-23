@@ -17,8 +17,6 @@ class LigneFraisHorsForfait
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: '0')]
-    private ?string $montant = null;
 
     #[ORM\Column(length: 255)]
     private ?string $libellé = null;
@@ -26,6 +24,9 @@ class LigneFraisHorsForfait
     #[ORM\ManyToOne(inversedBy: 'ligneHorsForfait')]
     #[ORM\JoinColumn(nullable: false)]
     private ?FicheFrais $ficheFrais = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: '0')]
+    private ?string $montant = null;
 
     public function getId(): ?int
     {
@@ -44,17 +45,7 @@ class LigneFraisHorsForfait
         return $this;
     }
 
-    public function getMontant(): ?string
-    {
-        return $this->montant;
-    }
 
-    public function setMontant(string $montant): self
-    {
-        $this->montant = $montant;
-
-        return $this;
-    }
 
     public function getLibellé(): ?string
     {
@@ -76,6 +67,18 @@ class LigneFraisHorsForfait
     public function setFicheFrais(?FicheFrais $ficheFrais): self
     {
         $this->ficheFrais = $ficheFrais;
+
+        return $this;
+    }
+
+    public function getMontant(): ?string
+    {
+        return $this->montant;
+    }
+
+    public function setMontant(string $montant): self
+    {
+        $this->montant = $montant;
 
         return $this;
     }

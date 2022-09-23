@@ -14,7 +14,7 @@ class Etat
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $libellé = null;
+    private ?string $libelle = null;
 
     #[ORM\OneToOne(mappedBy: 'Etat', cascade: ['persist', 'remove'])]
     private ?FicheFrais $etat = null;
@@ -24,14 +24,14 @@ class Etat
         return $this->id;
     }
 
-    public function getLibellé(): ?string
+    public function getLibelle(): ?string
     {
-        return $this->libellé;
+        return $this->libelle;
     }
 
-    public function setLibellé(string $libellé): self
+    public function setLibelle(string $libelle): self
     {
-        $this->libellé = $libellé;
+        $this->libelle = $libelle;
 
         return $this;
     }

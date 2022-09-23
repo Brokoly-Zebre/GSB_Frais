@@ -22,13 +22,11 @@ class FicheFrais
 
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateModification = null;
+    private ?\DateTimeInterface $dateModif = null;
 
     #[ORM\Column(length: 255)]
     private ?string $mois = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: '0')]
-    private ?string $montant = null;
 
     #[ORM\ManyToOne(inversedBy: 'ficheFrais')]
     #[ORM\JoinColumn(nullable: false)]
@@ -43,6 +41,9 @@ class FicheFrais
     #[ORM\OneToOne(inversedBy: 'etat', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Etat $Etat = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: '0')]
+    private ?string $montantValid = null;
 
     public function __construct()
     {
@@ -70,14 +71,14 @@ class FicheFrais
 
 
 
-    public function getDateModification(): ?\DateTimeInterface
+    public function getDateModif(): ?\DateTimeInterface
     {
-        return $this->dateModification;
+        return $this->dateModif;
     }
 
-    public function setDateModification(\DateTimeInterface $dateModification): self
+    public function setDateModif(\DateTimeInterface $dateModif): self
     {
-        $this->dateModification = $dateModification;
+        $this->dateModif = $dateModif;
 
         return $this;
     }
@@ -94,17 +95,7 @@ class FicheFrais
         return $this;
     }
 
-    public function getMontant(): ?string
-    {
-        return $this->montant;
-    }
 
-    public function setMontant(string $montant): self
-    {
-        $this->montant = $montant;
-
-        return $this;
-    }
 
     public function getUser(): ?User
     {
@@ -186,6 +177,18 @@ class FicheFrais
     public function setEtat(Etat $Etat): self
     {
         $this->Etat = $Etat;
+
+        return $this;
+    }
+
+    public function getMontantValid(): ?string
+    {
+        return $this->montantValid;
+    }
+
+    public function setMontantValid(string $montantValid): self
+    {
+        $this->montantValid = $montantValid;
 
         return $this;
     }

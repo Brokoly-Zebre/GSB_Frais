@@ -18,13 +18,14 @@ class FraisForfais
 
 
     #[ORM\Column(length: 255)]
-    private ?string $libellé = null;
+    private ?string $libelle = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: '0')]
-    private ?string $montant = null;
 
     #[ORM\OneToMany(mappedBy: 'fraisForfais', targetEntity: LigneFraisForfait::class)]
     private Collection $fraisForfais;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: '0')]
+    private ?string $montant = null;
 
     public function __construct()
     {
@@ -37,29 +38,19 @@ class FraisForfais
     }
 
 
-    public function getLibellé(): ?string
+    public function getLibelle(): ?string
     {
-        return $this->libellé;
+        return $this->libelle;
     }
 
-    public function setLibellé(string $libellé): self
+    public function setLibelle(string $libelle): self
     {
-        $this->libellé = $libellé;
+        $this->libelle = $libelle;
 
         return $this;
     }
 
-    public function getMontant(): ?string
-    {
-        return $this->montant;
-    }
 
-    public function setMontant(string $montant): self
-    {
-        $this->montant = $montant;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, LigneFraisForfait>
@@ -87,6 +78,18 @@ class FraisForfais
                 $fraisForfai->setFraisForfais(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMontant(): ?string
+    {
+        return $this->montant;
+    }
+
+    public function setMontant(string $montant): self
+    {
+        $this->montant = $montant;
 
         return $this;
     }
