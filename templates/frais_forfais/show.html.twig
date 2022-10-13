@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FraisForfais{% endblock %}
+
+{% block body %}
+    <h1>FraisForfais</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ frais_forfai.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ frais_forfai.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Montant</th>
+                <td>{{ frais_forfai.montant }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_frais_forfais_index') }}">back to list</a>
+
+    <a href="{{ path('app_frais_forfais_edit', {'id': frais_forfai.id}) }}">edit</a>
+
+    {{ include('frais_forfais/_delete_form.html.twig') }}
+{% endblock %}

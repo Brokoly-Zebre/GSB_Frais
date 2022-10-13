@@ -153,12 +153,12 @@ class DataImportController extends AbstractController
             $user = $doctrine->getRepository(User::class)->findOneBy(['oldId' => $lignefraishorsforfait->idVisiteur]);
             $ficheFrais = $doctrine->getRepository(FicheFrais::class)->findOneBy(['user'=> $user,'mois'=>$lignefraishorsforfait->mois]);
             $newligneFraisHorsForfait->setFicheFrais($ficheFrais);
-            $newligneFraisHorsForfait->setDate($lignefraishorsforfait->date);
+            $newligneFraisHorsForfait->setDate(new \DateTime($lignefraishorsforfait->date));
             $newligneFraisHorsForfait->setLibelle($lignefraishorsforfait->libelle);
             $newligneFraisHorsForfait->setMontant($lignefraishorsforfait->montant);
 
-            //$doctrine->getManager()->persist($newligneHorsFraisForfait);
-            //$doctrine->getManager()->flush();
+            $doctrine->getManager()->persist($newligneFraisHorsForfait);
+            $doctrine->getManager()->flush();
 
         }
         return $this->render('data_import/index.html.twig', [
