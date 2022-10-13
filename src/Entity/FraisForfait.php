@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\FraisForfaisRepository;
+use App\Repository\FraisForfaitRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: FraisForfaisRepository::class)]
-class FraisForfais
+#[ORM\Entity(repositoryClass: FraisForfaitRepository::class)]
+class FraisForfait
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,15 +21,15 @@ class FraisForfais
     private ?string $libelle = null;
 
 
-    #[ORM\OneToMany(mappedBy: 'fraisForfais', targetEntity: LigneFraisForfait::class)]
-    private Collection $fraisForfais;
+    #[ORM\OneToMany(mappedBy: 'fraisForfait', targetEntity: LigneFraisForfait::class)]
+    private Collection $lignesFraisForfait;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: '0')]
     private ?string $montant = null;
 
     public function __construct()
     {
-        $this->fraisForfais = new ArrayCollection();
+        $this->lignesFraisForfait = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -55,27 +55,27 @@ class FraisForfais
     /**
      * @return Collection<int, LigneFraisForfait>
      */
-    public function getFraisForfais(): Collection
+    public function getLignesFraisForfait(): Collection
     {
-        return $this->fraisForfais;
+        return $this->lignesFraisForfait;
     }
 
-    public function addFraisForfai(LigneFraisForfait $fraisForfai): self
+    public function addFraisForfais(LigneFraisForfait $ligneFraisForfait): self
     {
-        if (!$this->fraisForfais->contains($fraisForfai)) {
-            $this->fraisForfais->add($fraisForfai);
-            $fraisForfai->setFraisForfais($this);
+        if (!$this->lignesFraisForfait->contains($ligneFraisForfait)) {
+            $this->lignesFraisForfait->add($ligneFraisForfait);
+            $ligneFraisForfait->setFraisForfait($this);
         }
 
         return $this;
     }
 
-    public function removeFraisForfai(LigneFraisForfait $fraisForfai): self
+    public function removeFraisForfais(LigneFraisForfait $ligneFraisForfait): self
     {
-        if ($this->fraisForfais->removeElement($fraisForfai)) {
+        if ($this->lignesFraisForfait->removeElement($ligneFraisForfait)) {
             // set the owning side to null (unless already changed)
-            if ($fraisForfai->getFraisForfais() === $this) {
-                $fraisForfai->setFraisForfais(null);
+            if ($ligneFraisForfait->getFraisForfait() === $this) {
+                $ligneFraisForfait->setFraisForfait(null);
             }
         }
 

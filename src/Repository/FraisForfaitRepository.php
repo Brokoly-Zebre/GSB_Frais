@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\FraisForfais;
+use App\Entity\FraisForfait;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<FraisForfais>
+ * @extends ServiceEntityRepository<FraisForfait>
  *
- * @method FraisForfais|null find($id, $lockMode = null, $lockVersion = null)
- * @method FraisForfais|null findOneBy(array $criteria, array $orderBy = null)
- * @method FraisForfais[]    findAll()
- * @method FraisForfais[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method FraisForfait|null find($id, $lockMode = null, $lockVersion = null)
+ * @method FraisForfait|null findOneBy(array $criteria, array $orderBy = null)
+ * @method FraisForfait[]    findAll()
+ * @method FraisForfait[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FraisForfaisRepository extends ServiceEntityRepository
+class FraisForfaitRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, FraisForfais::class);
+        parent::__construct($registry, FraisForfait::class);
     }
 
-    public function add(FraisForfais $entity, bool $flush = false): void
+    public function add(FraisForfait $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class FraisForfaisRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(FraisForfais $entity, bool $flush = false): void
+    public function remove(FraisForfait $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class FraisForfaisRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return FraisForfais[] Returns an array of FraisForfais objects
+//     * @return FraisForfait[] Returns an array of FraisForfait objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class FraisForfaisRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?FraisForfais
+//    public function findOneBySomeField($value): ?FraisForfait
 //    {
 //        return $this->createQueryBuilder('f')
 //            ->andWhere('f.exampleField = :val')

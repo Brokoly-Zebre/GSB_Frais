@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EtatRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EtatRepository::class)]
@@ -16,8 +18,14 @@ class Etat
     #[ORM\Column(length: 255)]
     private ?string $libelle = null;
 
-    #[ORM\OneToOne(mappedBy: 'Etat', cascade: ['persist', 'remove'])]
-    private ?FicheFrais $etat = null;
+    #[ORM\OneToMany(mappedBy: 'etat', targetEntity: FicheFrais::class)]
+    private Collection $fichesFrais;
+
+    public function __construct()
+    {
+        $this->fichesFrais = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -36,20 +44,35 @@ class Etat
         return $this;
     }
 
-    public function getEtat(): ?FicheFrais
+    /**
+     * @return Collection<int, FicheFrais>
+     */
+    public function getFichesFrais(): Collection
     {
-        return $this->etat;
+        return $this->fichesFrais;
     }
 
-    public function setEtat(FicheFrais $etat): self
+    public function addFichesFrai(FicheFrais $fichesFrai): self
     {
-        // set the owning side of the relation if necessary
-        if ($etat->getEtat() !== $this) {
-            $etat->setEtat($this);
+        if (!$this->fichesFrais->contains($fichesFrai)) {
+            $this->fichesFrais->add($fichesFrai);
+            $fichesFrai->setEtat($this);
         }
-
-        $this->etat = $etat;
 
         return $this;
     }
+
+    public function removeFichesFrai(FicheFrais $fichesFrai): self
+    {
+        if ($this->fichesFrais->removeElement($fichesFrai)) {
+            // set the owning side to null (unless already changed)
+            if ($fichesFrai->getEtat() === $this) {
+                $fichesFrai->setEtat(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

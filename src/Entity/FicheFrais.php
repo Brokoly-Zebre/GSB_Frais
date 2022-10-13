@@ -38,12 +38,14 @@ class FicheFrais
     #[ORM\OneToMany(mappedBy: 'ficheFrais', targetEntity: LigneFraisHorsForfait::class, orphanRemoval: true)]
     private Collection $ligneHorsForfait;
 
-    #[ORM\OneToOne(inversedBy: 'etat', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Etat $Etat = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: '0')]
     private ?string $montantValid = null;
+
+    #[ORM\ManyToOne(inversedBy: 'fichesFrais')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Etat $etat = null;
+
 
     public function __construct()
     {
@@ -169,17 +171,6 @@ class FicheFrais
         return $this;
     }
 
-    public function getEtat(): ?Etat
-    {
-        return $this->Etat;
-    }
-
-    public function setEtat(Etat $Etat): self
-    {
-        $this->Etat = $Etat;
-
-        return $this;
-    }
 
     public function getMontantValid(): ?string
     {
@@ -192,6 +183,19 @@ class FicheFrais
 
         return $this;
     }
+
+    public function getEtat(): ?Etat
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(?Etat $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
 
 
 }

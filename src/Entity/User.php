@@ -58,6 +58,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $oldId = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $FicheFrais = null;
+
     public function __construct()
     {
         $this->ficheFrais = new ArrayCollection();
@@ -255,6 +258,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setOldId(string $oldId): self
     {
         $this->oldId = $oldId;
+
+        return $this;
+    }
+
+    public function setFicheFrais(string $FicheFrais): self
+    {
+        $this->FicheFrais = $FicheFrais;
 
         return $this;
     }
