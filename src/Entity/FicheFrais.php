@@ -141,6 +141,16 @@ class FicheFrais
         return $this;
     }
 
+
+    public function inflation(){
+
+    $quantité * $montant
+
+        return ;
+    }
+
+
+
     /**
      * @return Collection<int, LigneFraisHorsForfait>
      */
