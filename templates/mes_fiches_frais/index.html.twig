@@ -5,13 +5,27 @@
 {% block body %}
 
     {{ form(myForm) }}
-
-
-
-    {% for uneLigne in fiche_frais.ligneHorsForfait  %}
-        <li>{{ uneLigne.libelle }}</li>
-    {% endfor %}
     {{ dump(fiche_frais) }}
-<p>{{ fiche_frais.mois}}</p>
+
+    <body>
+    <table>
+        <tr>
+            <th><h2>Mois :</h2></th>
+        </tr>
+        <tr><th><h2>Montant :</h2></tr></th>
+
+
+    </table>
+
+
+
+
+
+
+
+    </body>
+
+
+
 
 {% endblock %}
