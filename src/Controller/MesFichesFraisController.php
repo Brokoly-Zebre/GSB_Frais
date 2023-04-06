@@ -16,7 +16,9 @@ class MesFichesFraisController extends AbstractController
     #[Route('/mes_fiches_frais', name: 'app_mes_fiches_frais')]
     public function index(ManagerRegistry $doctrine, Request $request): Response
     {
-      $user = $this->getUser();
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
+        $fichefrais = null;
 
         $repository = $doctrine->getRepository(FicheFrais::class);
         $fichesfrais = $repository->findBy(['user'=>$user]);
