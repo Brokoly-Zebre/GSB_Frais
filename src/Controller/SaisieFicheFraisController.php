@@ -31,6 +31,7 @@ class SaisieFicheFraisController extends AbstractController
         $ficheFrais = $repository->findOneBy(['user' => $user, 'mois' => $moisEnCours]);
 
         $entityManager = $doctrine->getManager();
+
         if ($ficheFrais == null) {
 
             $ficheFrais = new FicheFrais();
@@ -83,7 +84,7 @@ class SaisieFicheFraisController extends AbstractController
             $entityManager->flush();
         }
 
-        $myForm = $this->createForm(MajFraisForfaitType::class);
+        $myForm = $this->createForm(MajFraisForfaitType::class, null,['current_fiche_frais'=> $ficheFrais]);
         $myForm->handleRequest($request);
 
         //dd($ficheFrais);
@@ -117,7 +118,9 @@ class SaisieFicheFraisController extends AbstractController
             return $this->render('saisie_fiche_frais/index.html.twig', [
                 'controller_name' => 'SaisieFicheFraisController',
                 'myForm' => $myForm,
-                'formlfhf'=> $formlfhf
+                'formlfhf'=> $formlfhf,
+                'fiche_frais'=>$ficheFrais
+
             ]);
         }
 
