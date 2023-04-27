@@ -11,6 +11,7 @@ use App\Entity\LigneFraisHorsForfait;
 use App\Form\MajFraisForfaitType;
 use App\Form\MesFichesFraisType;
 use App\Form\SaisieFraisHorsForfaitType;
+use App\Repository\LigneFraisHorsForfaitRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -94,10 +95,10 @@ class SaisieFicheFraisController extends AbstractController
 
             //dd($quantite);
 
-            $ficheFrais->getLigneFraisForfait()[0]->setQuantite($quantite['lff_forfait_etape']);
-            $ficheFrais->getLigneFraisForfait()[1]->setQuantite($quantite['lff_frais_kilometrique']);
-            $ficheFrais->getLigneFraisForfait()[2]->setQuantite($quantite['lff_nuitee_hotel']);
-            $ficheFrais->getLigneFraisForfait()[3]->setQuantite($quantite['lff_repas_restaurant']);
+            $ficheFrais->getLigneFraisForfait()[0]->setQuantite($quantite['Forfait_Etape']);
+            $ficheFrais->getLigneFraisForfait()[1]->setQuantite($quantite['Frais_Kilometrique']);
+            $ficheFrais->getLigneFraisForfait()[2]->setQuantite($quantite['Nuitee_Hotel']);
+            $ficheFrais->getLigneFraisForfait()[3]->setQuantite($quantite['Repas_Restaurant']);
 
             $entityManager->persist($ficheFrais);
             $entityManager->flush();
@@ -123,5 +124,6 @@ class SaisieFicheFraisController extends AbstractController
 
             ]);
         }
+
 
 }

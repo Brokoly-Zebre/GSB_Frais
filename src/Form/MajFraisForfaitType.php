@@ -26,23 +26,26 @@ class MajFraisForfaitType extends AbstractType
             ->add('Frais_Kilometrique', IntegerType::class, [
                 'attr' => [
                     'min' => 0,
-                ]
+                ],
+                'data'=>$currentfichefrais->getLigneFraisForfait()[1]->getQuantite(),
             ])
             ->add('Nuitee_Hotel', IntegerType::class, [
                 'attr' => [
                     'min' => 0,
-                ]
+                ],
+                'data'=>$currentfichefrais->getLigneFraisForfait()[2]->getQuantite(),
             ])
             ->add('Repas_Restaurant', IntegerType::class, [
                 'attr' => [
                     'min' => 0,
-                ]
+                ],
+                'data'=>$currentfichefrais->getLigneFraisForfait()[3]->getQuantite(),
             ])
             ->add('valide', SubmitType::class,[
                 'label'=>'Valider',
                 'attr'=>[
                     'class'=>'btn btn-primary'
-                ]
+                ],
 
             ])
         ;

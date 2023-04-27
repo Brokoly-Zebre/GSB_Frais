@@ -21,10 +21,8 @@ class MesFichesFraisType extends AbstractType
                 'label'=>'Valider',
                 'attr'=>[
                     'class'=>'btn btn-primary'
-                ]
+                ]]);
 
-            ])
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

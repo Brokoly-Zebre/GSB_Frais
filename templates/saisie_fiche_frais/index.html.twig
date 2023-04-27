@@ -40,13 +40,16 @@
                     <td>{{ lfhf.date | date('d/m/Y') }}</td>
                     <td>{{ lfhf.libelle }}</td>
                     <td>{{ lfhf.montant }}</td>
-                    <td><form method="post" action="{{ path('app_ligne_frais_hors_forfait_delete', {'id': lfhf.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                    <td><form method="post" action="{{ path('app_ligne_frais_hors_forfait_delete', {'id': lfhf.id}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer le frais hors forfait?');" >
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ lfhf.id) }}">
-                            <button type="button" class="btn btn-danger">Supprimer</button>
-                        </form></td>
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+
+                    </td>
                 </tr>
            </tbody>
             {% endfor %}
+
             </thead>
         </table>
     </div>
