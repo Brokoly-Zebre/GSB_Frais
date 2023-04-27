@@ -15,23 +15,25 @@ class MajFraisForfaitType extends AbstractType
         $currentfichefrais = $options['current_fiche_frais'];
 
         $builder
-            ->add('lff_forfait_etape', IntegerType::class, [
+            ->add('Forfait_Etape', IntegerType::class, [
                 'attr' => [
                     'min' => 0,
                 ],
+
                 'data'=>$currentfichefrais->getLigneFraisForfait()[0]->getQuantite(),
+
             ])
-            ->add('lff_frais_kilometrique', IntegerType::class, [
+            ->add('Frais_Kilometrique', IntegerType::class, [
                 'attr' => [
                     'min' => 0,
                 ]
             ])
-            ->add('lff_nuitee_hotel', IntegerType::class, [
+            ->add('Nuitee_Hotel', IntegerType::class, [
                 'attr' => [
                     'min' => 0,
                 ]
             ])
-            ->add('lff_repas_restaurant', IntegerType::class, [
+            ->add('Repas_Restaurant', IntegerType::class, [
                 'attr' => [
                     'min' => 0,
                 ]

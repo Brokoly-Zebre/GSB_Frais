@@ -4,28 +4,86 @@
 
 {% block body %}
 
-    {{ form(myForm) }}
-    {{ dump(fiche_frais) }}
 
-    <body>
-    <table>
-        <tr>
-            <th><h2>Mois :</h2></th>
-        </tr>
-        <tr><th><h2>Montant :</h2></tr></th>
+<div class="container">
+    <h2>Mes frais du mois </h2>
+    <div class="row m-1 p-1 border border-success rounded text-center">
+
+            <label class="form-label"
+            {{ form(myForm) }}
+
+    </div>
+
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope=col>Id</th>
+                <th scope=col>Nb Justificatifs</th>
+                <th scope=col>Date Modif</th>
+                <th scope=col>Mois</th>
+                <th scope=col>Montant Valide</th>
+                <th scope=col>Etat</th>
+                <th scope=col></th>
+            </tr>
+
+            <tbody>
+                <tr>
+                    <td>{{ fiche_frais.id }}</td>
+                    <td>{{ fiche_frais.nbjustificatifs }}</td>
+                    <td>{{ fiche_frais.dateModif | date('d/m/Y')}}</td>
+                    <td>{{ fiche_frais.mois }}</td>
+                    <td>{{ fiche_frais.montantValid }}</td>
+                    <td>{{ fiche_frais.etat.libelle }}</td>
+
+                </tr>
+            </tbody>
+            </thead>
+        </table>
+    </div>
 
 
-    </table>
+    <div class="row">
+        <h2>Frais Forfaitisés</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope=col>Forfait Etape</th>
+                <th scope=col>Frais Kilométrique</th>
+                <th scope=col>Nuitée Hôtel</th>
+                <th scope=col>Repas Restaurant</th>
+            </tr>
 
+            <tbody>
+            <tr>
+                {%for ligneFHF in fiche_frais.ligneFraisForfait %}
+                    <td>{{ ligneFHF.quantite}}</td>
 
+                    {% endfor %}
+            </tr>
+            </tbody>
+            </thead>
+        </table>
+    </div>
 
-
-
-
-
-    </body>
-
-
-
-
+    <div class="row">
+        <h2>Frais Hors Forfaitisés</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope=col>Montant</th>
+                <th scope=col>Libellé</th>
+            </tr>
+            <tbody>
+            {%for ligneFHFH in fiche_frais.ligneHorsForfait %}
+            <tr>
+                        <td>{{ ligneFHFH.montant }}</td>
+                        <td>{{ ligneFHFH.libelle }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            </thead>
+        </table>
+    </div>
+</div>
 {% endblock %}
